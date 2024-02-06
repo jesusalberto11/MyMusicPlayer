@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
 import Sidebar from "./components/layout/Sidebar";
 import MusicPlayer from "./components/music player/MusicPlayer";
@@ -9,7 +10,6 @@ function App() {
     audioPlayerRef,
     currentSongData,
     currentSongPath,
-    currentSongIndex,
     currentSongTotalDuration,
     handleSongCurrentTime,
     currentSongTime,
@@ -24,6 +24,7 @@ function App() {
     <div className="app-container">
       <Sidebar />
       <div className="main-content">
+        <Outlet />
         <MainPage songList={songList} setCurrentSong={setCurrentSong} />
       </div>
       {currentSongPath !== "" && (
