@@ -5,10 +5,7 @@ import SongList from "../components/pages/MainPage/SongList";
 
 const MainPage = (props: { songList: Song[]; setCurrentSong: any }) => {
   return (
-    <PageContainer>
-      <div className="main-page-header">
-        <h1>MyMusic</h1>
-      </div>
+    <PageContainer title="MyMusic">
       <div className="list-container">
         <SongList
           songList={props.songList}
