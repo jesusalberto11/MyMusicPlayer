@@ -1,0 +1,21 @@
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+.app-container {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: minmax(150px, 300px) auto;
+  grid-template-rows: minmax(auto, calc(100vh - 130px)) 130px;
+  grid-template-areas: "sidebar main" "player player";
+}
+
+.main-content {
+  grid-area: main;
+
+  max-height: 100%;
+  width: 100%;
+}
