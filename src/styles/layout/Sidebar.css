@@ -49,9 +49,12 @@
 .sidebar-nav-item {
   cursor: pointer;
   user-select: none;
+  text-decoration: none;
 
   gap: 10px;
+
   background-color: #1e2329;
+  color: var(--main-font-color);
 
   height: 40px;
   width: 100%;
