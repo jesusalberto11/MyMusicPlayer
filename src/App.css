@@ -8,7 +8,7 @@
   width: 100%;
 
   display: grid;
-  grid-template-columns: minmax(150px, 250px) auto;
+  grid-template-columns: minmax(50px, 250px) auto;
   grid-template-rows: minmax(auto, calc(100vh - 130px)) 130px;
   grid-template-areas: "sidebar main" "player player";
 }

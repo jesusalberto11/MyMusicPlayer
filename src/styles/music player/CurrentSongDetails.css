@@ -27,6 +27,7 @@
 .song-name {
   color: white;
 
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -52,6 +53,12 @@
   }
 
   .song-artist-album-container p {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 368px) {
+  .song-name {
     display: none;
   }
 }
