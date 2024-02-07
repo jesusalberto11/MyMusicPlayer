@@ -33,22 +33,39 @@ li:nth-child(odd) {
   cursor: pointer;
 
   height: auto;
+  max-height: 60px;
   width: 99%;
 
   border-radius: 5px;
+  border: 1px solid #2d3137;
 
-  font-size: 15px;
+  font-size: 14px;
 
-  display: flex;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 50px repeat(4, 1fr);
+  place-items: left;
   align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
+  gap: 50px;
 
   padding: 5px 5px;
 
   transition: all 0.2s;
+}
 
-  border: 1px solid #2d3137;
+.song-list-item p {
+  height: 100%;
+  max-height: 60px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .song-list-item:hover {
@@ -61,9 +78,9 @@ li:nth-child(odd) {
 
   border-radius: 5px;
 }
-/* 
-@media screen and (max-height: 550px) {
-  .song-list {
-    max-height: 260px;
+
+@media screen and (max-width: 768px) {
+  .song-list-item {
+    gap: 20px;
   }
-} */
+}
