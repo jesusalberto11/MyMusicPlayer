@@ -5,4 +5,5 @@ export interface Song {
   album: string;
   artist: string;
   file_name: string;
+  year: number;
 }
