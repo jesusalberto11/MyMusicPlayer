@@ -12,6 +12,9 @@ const SongList = (props: { songList: Song[]; setCurrentSong: any }) => {
           >
             <img src={item?.image} className="song-list-item-img" />
             <p>{item?.title}</p>
+            <p>{item?.artist}</p>
+            <p>{item?.album}</p>
+            <p>{item?.year}</p>
           </li>
         ))}
     </ol>
