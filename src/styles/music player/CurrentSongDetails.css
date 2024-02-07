@@ -41,3 +41,17 @@
   font-size: 16px;
   color: #c5c5c5;
 }
+
+@media screen and (max-width: 768px) {
+  .current-song-img {
+    height: 50px;
+  }
+
+  .song-name {
+    font-size: 16px;
+  }
+
+  .song-artist-album-container p {
+    display: none;
+  }
+}

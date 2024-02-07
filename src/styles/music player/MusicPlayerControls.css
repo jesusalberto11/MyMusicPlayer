@@ -46,3 +46,10 @@
 .play-button:hover {
   filter: drop-shadow(0 0 4px #8b91ff);
 }
+
+@media screen and (max-width: 768px) {
+  .play-button {
+    height: 50px;
+    width: 50px;
+  }
+}
