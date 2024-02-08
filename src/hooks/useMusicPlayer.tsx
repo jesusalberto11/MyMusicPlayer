@@ -35,6 +35,7 @@ export const useMusicPlayer = () => {
     const songListNames: any = await invoke("get_music_items");
     const audioDirPath = await audioDir();
     const parsedSongs: any = await JSON.parse(songListNames);
+    console.log(parsedSongs);
 
     parsedSongs.forEach((song: Song) => {
       const formattedSongFileName: string = song.file_name.replace(
@@ -43,6 +44,7 @@ export const useMusicPlayer = () => {
       );
       song.file_name = formattedSongFileName;
 
+      if (!song.image) return;
       const filePath: string =
         audioDirPath + `Done/img/${formattedSongFileName}_image.jpg`;
       const musicUrl: string = convertFileSrc(filePath);
