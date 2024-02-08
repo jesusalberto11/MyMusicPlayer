@@ -3,12 +3,21 @@ import { Song } from "../../interfaces/Song";
 import noCoverImg from "../../assets/no-cover.png";
 
 const CurrentSongDetails = (props: { currentSongData: Song }) => {
+  const checkSongImage = () => {
+    if (
+      props.currentSongData?.image === null ||
+      props.currentSongData?.image === "null" ||
+      !props.currentSongData?.image
+    ) {
+      return noCoverImg;
+    }
+
+    return props.currentSongData?.image;
+  };
+
   return (
     <div className="song-details-container">
-      <img
-        src={props.currentSongData?.image || noCoverImg}
-        className="current-song-img"
-      />
+      <img src={checkSongImage()} className="current-song-img" />
       <div className="song-details">
         <h2 className="song-name">
           {props.currentSongData?.title

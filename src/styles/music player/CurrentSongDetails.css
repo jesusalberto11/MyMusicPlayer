@@ -8,8 +8,11 @@
 }
 
 .current-song-img {
-  height: 70px;
+  --image-height: 70px;
+
+  height: var(--image-height);
   width: auto;
+  max-width: var(--image-height);
 
   border-radius: 50%;
 
