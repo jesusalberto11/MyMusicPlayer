@@ -12,10 +12,10 @@ use std::{fs::File, io::Write};
 #[derive(Debug, Serialize)]
 struct SongData {
     title: String,
-    artist: String,
-    year: i32,
-    album: String,
-    image: String,
+    artist: Option<String>,
+    year: Option<i32>,
+    album: Option<String>,
+    image: Option<String>,
     file_name: String,
 }
 
@@ -90,17 +90,15 @@ fn get_song_metatadata(
         title: tag
             .title()
             .map(String::from)
-            .unwrap_or_else(|| "null".to_string()),
-        artist: tag
-            .artist()
-            .map(String::from)
-            .unwrap_or_else(|| "null".to_string()),
-        year: tag.year().unwrap_or_else(|| 0),
-        album: tag
-            .album()
-            .map(String::from)
-            .unwrap_or_else(|| "null".to_string()),
-        image: format!("img/{:?}_image.jpg", song_name.to_string()),
+            .unwrap_or_else(|| song_name.to_string()),
+        artist: tag.artist().map(String::from).or_else(|| None),
+        year: tag.year().or_else(|| None),
+        album: tag.album().map(String::from).or_else(|| None),
+        image: if tag.pictures().next().is_some() {
+            Some(format!("img/{:?}_image.jpg", song_name.to_string()))
+        } else {
+            None
+        },
         file_name: song_name.to_string(),
     };
 
