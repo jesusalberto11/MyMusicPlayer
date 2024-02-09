@@ -4,9 +4,15 @@ const SimpleButton = (props: {
   showTitle: boolean;
   title: string;
   icon: string;
+  onClickItem?: any;
 }) => {
   return (
-    <button className="simple-button" type="button" title={props.title}>
+    <button
+      className="simple-button"
+      type="button"
+      title={props.title}
+      onClick={() => props.onClickItem()}
+    >
       <svg
         width="22"
         height="22"
