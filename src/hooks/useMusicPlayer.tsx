@@ -85,6 +85,20 @@ export const useMusicPlayer = () => {
     setCurrentSongPercentaje(0);
   }
 
+  const handleSongProgressBarClick = (
+    progressWidthValue: number,
+    clickedOffsetX: number
+  ) => {
+    const musicDuration = audioPlayerRef.current?.duration || 0;
+
+    if (audioPlayerRef.current === null) return;
+
+    if (progressWidthValue !== 0 && musicDuration !== 0) {
+      audioPlayerRef.current.currentTime =
+        (clickedOffsetX / progressWidthValue) * musicDuration;
+    }
+  };
+
   const handleSongCurrentTime = () => {
     const audioDuration: number = audioPlayerRef.current?.currentTime || 0;
 
@@ -124,6 +138,7 @@ export const useMusicPlayer = () => {
     currentSongPercentaje,
     handleSongCurrentTime,
     handleCurrentSongTotalDuration,
+    handleSongProgressBarClick,
     songList,
     setCurrentSong,
     onSongEnd,

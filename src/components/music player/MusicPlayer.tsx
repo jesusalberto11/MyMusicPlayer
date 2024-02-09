@@ -9,10 +9,12 @@ const MusicPlayer = (props: {
   currentSongTime: string;
   currentSongTotalDuration: string;
   currentSongPercentaje: number;
+  handleSongProgressBarClick: any;
 }) => {
   return (
     <div className="music-player">
       <ProgressBar
+        handleSongProgressBarClick={props.handleSongProgressBarClick}
         currentSongTime={props.currentSongTime}
         currentSongTotalDuration={props.currentSongTotalDuration}
         currentSongPercentaje={props.currentSongPercentaje}

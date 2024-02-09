@@ -12,6 +12,7 @@ function App() {
     currentSongPath,
     currentSongTotalDuration,
     handleSongCurrentTime,
+    handleSongProgressBarClick,
     currentSongTime,
     currentSongPercentaje,
     songList,
@@ -42,6 +43,7 @@ function App() {
         currentSongTime={currentSongTime}
         currentSongTotalDuration={currentSongTotalDuration}
         currentSongPercentaje={currentSongPercentaje}
+        handleSongProgressBarClick={handleSongProgressBarClick}
       />
     </div>
   );
