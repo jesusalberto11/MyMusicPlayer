@@ -6,7 +6,7 @@ const SidebarItem = (props: { to: string; title: string; icon: string }) => {
   return (
     <Link className="sidebar-nav-item" to={props.to}>
       <SVGIcon icon={props.icon} />
-      {props.title}
+      <p>{props.title}</p>
     </Link>
   );
 };
