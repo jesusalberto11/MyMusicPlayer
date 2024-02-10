@@ -9,6 +9,7 @@ export const useMusicPlayer = () => {
   const [currentSongData, setCurrentSongData] = useState({});
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [songList, setSongsList] = useState([]);
+  const [filteredSongList, setFilteredSongList] = useState([]);
   const [currentSongTotalDuration, setCurrentSongTotalDuration] = useState("");
   const [currentSongTime, setCurrentSongTime] = useState("");
   const [currentSongPercentaje, setCurrentSongPercentaje] = useState(0);
@@ -35,7 +36,6 @@ export const useMusicPlayer = () => {
     const songListNames: any = await invoke("get_music_items");
     const audioDirPath = await audioDir();
     const parsedSongs: any = await JSON.parse(songListNames);
-    console.log(parsedSongs);
 
     parsedSongs.forEach((song: Song) => {
       const formattedSongFileName: string = song.file_name.replace(
@@ -52,6 +52,7 @@ export const useMusicPlayer = () => {
     });
 
     setSongsList(parsedSongs);
+    setFilteredSongList(parsedSongs);
     setCurrentSongIndex(0);
 
     console.log("[DONE] - Loaded music correctly.");
@@ -70,15 +71,15 @@ export const useMusicPlayer = () => {
     setCurrentSongData(songList[songIndex]);
   }
 
-  async function setCurrentSongByIndex(songIndex: number) {
-    // const audioDirPath = await audioDir();
-    // const filePath: string = await join(
-    //   audioDirPath + "Done",
-    //   songList[songIndex]
-    // );
-    // const musicUrl: string = convertFileSrc(filePath);
-    // setCurrentSongPath(musicUrl);
-  }
+  // async function setCurrentSongByIndex(songIndex: number) {
+  //   // const audioDirPath = await audioDir();
+  //   // const filePath: string = await join(
+  //   //   audioDirPath + "Done",
+  //   //   songList[songIndex]
+  //   // );
+  //   // const musicUrl: string = convertFileSrc(filePath);
+  //   // setCurrentSongPath(musicUrl);
+  // }
 
   function onSongEnd() {
     setCurrentSongIndex((currentSongIndex) => currentSongIndex + 1);
@@ -128,6 +129,14 @@ export const useMusicPlayer = () => {
     setCurrentSongTotalDuration(`${currentMin}:${currentSec}`);
   }
 
+  const filterSongList = (searchText: string) => {
+    const filteredSongList = songList.filter((item: Song) =>
+      item.title.toLowerCase().includes(searchText)
+    );
+
+    setFilteredSongList(filteredSongList);
+  };
+
   return {
     audioPlayerRef,
     currentSongData,
@@ -142,5 +151,7 @@ export const useMusicPlayer = () => {
     songList,
     setCurrentSong,
     onSongEnd,
+    filteredSongList,
+    filterSongList,
   };
 };

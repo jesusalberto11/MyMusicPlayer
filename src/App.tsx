@@ -15,10 +15,11 @@ function App() {
     handleSongProgressBarClick,
     currentSongTime,
     currentSongPercentaje,
-    songList,
     onSongEnd,
     setCurrentSong,
     handleCurrentSongTotalDuration,
+    filteredSongList,
+    filterSongList,
   } = useMusicPlayer();
 
   return (
@@ -26,7 +27,11 @@ function App() {
       <Sidebar />
       <div className="main-content">
         <Outlet />
-        <MainPage songList={songList} setCurrentSong={setCurrentSong} />
+        <MainPage
+          filterSongList={filterSongList}
+          songList={filteredSongList}
+          setCurrentSong={setCurrentSong}
+        />
       </div>
       {currentSongPath !== "" && (
         <audio
