@@ -28,8 +28,8 @@ export const useMusicPlayer = () => {
     setCurrentSongData(songList[currentSongIndex]);
 
     //AUTOPLAY
-    // setCurrentSongPercentaje(0);
-    // audioPlayerRef?.current?.play();
+    setCurrentSongPercentaje(0);
+    audioPlayerRef?.current?.play();
   }, [currentSongIndex]);
 
   async function loadSongs() {
@@ -51,8 +51,12 @@ export const useMusicPlayer = () => {
       song.image = musicUrl;
     });
 
-    setSongsList(parsedSongs);
-    setFilteredSongList(parsedSongs);
+    const orderedSongs: any = [...parsedSongs].sort((a, b) =>
+      a.title.localeCompare(b.title)
+    );
+
+    setSongsList(orderedSongs);
+    setFilteredSongList(orderedSongs);
     setCurrentSongIndex(0);
 
     console.log("[DONE] - Loaded music correctly.");
