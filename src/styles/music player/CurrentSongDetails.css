@@ -1,9 +1,7 @@
 .song-details-container {
   width: 100%;
 
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto;
+  display: flex;
   gap: 15px;
 }
 
@@ -20,6 +18,8 @@
 }
 
 .song-details {
+  max-width: calc(450px - 80px);
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -28,22 +28,57 @@
 }
 
 .song-name {
+  width: 100%;
   color: white;
 
   font-size: 20px;
   font-weight: bold;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .song-artist-album-container {
+  width: 100%;
+
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 5px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .song-artist-album-container p {
   font-size: 16px;
   color: #c5c5c5;
+}
+
+.song-artist,
+.song-album {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.song-artist {
+  min-width: max-content;
+}
+
+.song-album-text {
+  width: 100%;
+  min-width: 100%;
+}
+
+.text-scroll {
+  animation: marqueeAnimation 8s infinite linear;
+}
+
+@keyframes marqueeAnimation {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -60,8 +95,15 @@
   }
 }
 
+@media screen and (max-width: 536px) {
+  .song-name {
+    max-width: 100px;
+  }
+}
+
 @media screen and (max-width: 368px) {
   .song-name {
     display: none;
+    max-width: 0;
   }
 }

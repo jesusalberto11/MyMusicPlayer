@@ -18,11 +18,23 @@
 .music-player-bottom {
   width: 100%;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 450px));
+  grid-template-rows: auto;
 }
 
 @media screen and (max-width: 768px) {
   .music-player {
     justify-content: space-evenly;
+  }
+
+  .music-player-bottom {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 368px) {
+  .music-player-bottom {
+    grid-template-columns: auto 1fr;
   }
 }
