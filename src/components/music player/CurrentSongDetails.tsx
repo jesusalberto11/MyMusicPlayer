@@ -1,14 +1,24 @@
 import "../../styles/music player/CurrentSongDetails.css";
 import { Song } from "../../interfaces/Song";
 import noCoverImg from "../../assets/no-cover.png";
+import { useEffect, useRef, useState } from "react";
 
 const CurrentSongDetails = (props: { currentSongData: Song }) => {
+  const songAlbumContainer = useRef<null | HTMLDivElement>(null);
+  const songAlbumText = useRef<null | HTMLDivElement>(null);
+  const [songAlbumTextIsBigger, setSongAlbumTextIsBigger] = useState(false);
+
+  useEffect(() => {
+    const container = songAlbumContainer?.current;
+    const text = songAlbumText?.current;
+
+    if (!text || !container) return;
+
+    setSongAlbumTextIsBigger(text.scrollWidth > container.clientWidth);
+  }, [props.currentSongData]);
+
   const checkSongImage = () => {
-    if (
-      props.currentSongData?.image === null ||
-      props.currentSongData?.image === "null" ||
-      !props.currentSongData?.image
-    ) {
+    if (!props.currentSongData?.image) {
       return noCoverImg;
     }
 
@@ -28,14 +38,23 @@ const CurrentSongDetails = (props: { currentSongData: Song }) => {
           <p className="song-artist">
             {props.currentSongData?.artist
               ? props.currentSongData?.artist
-              : "No artist"}
+              : "Unknown artist"}
           </p>
           <p>●</p>
-          <p className="song-album">
-            {props.currentSongData?.album
-              ? props.currentSongData?.album
-              : "No album"}
-          </p>
+          <div ref={songAlbumContainer} className="song-album">
+            <p
+              ref={songAlbumText}
+              className={
+                songAlbumTextIsBigger
+                  ? "song-album-text text-scroll"
+                  : "song-album-text"
+              }
+            >
+              {props.currentSongData?.album
+                ? props.currentSongData?.album
+                : "Unknown album"}
+            </p>
+          </div>
         </div>
       </div>
     </div>
