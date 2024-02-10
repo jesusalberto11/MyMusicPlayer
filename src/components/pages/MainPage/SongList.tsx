@@ -1,3 +1,4 @@
+import "../../../styles/pages/SongList.css";
 import { Song } from "../../../interfaces/Song";
 import SongListItem from "./SongListItem";
 
