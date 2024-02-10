@@ -1,4 +1,6 @@
+import { SVG_ICONS } from "../../../helpers/svgIcons";
 import "../../../styles/pages/MainPageHeader.css";
+import SVGIcon from "../../shared/SVGIcon";
 
 const MainPageHeader = (props: { filterSongList: any }) => {
   return (
@@ -9,10 +11,20 @@ const MainPageHeader = (props: { filterSongList: any }) => {
         className="searchbar"
         placeholder="Search a song..."
       />
-      <div>
-        <button type="button">Pick a random song</button>
-        <button type="button">order by A-Z</button>
-        <button type="button">FILTER BY genre</button>
+      <div className="header-items-container">
+        <div className="header-item">
+          <label htmlFor="sort">Sort by:</label>
+          <select id="sort">
+            <option>A - Z</option>
+            <option>Artist</option>
+            <option>Album</option>
+            <option>Year</option>
+          </select>
+        </div>
+        <button className="random-button" type="button">
+          <SVGIcon icon={SVG_ICONS.SHUFFLE} />
+          Pick a random song
+        </button>
       </div>
     </div>
   );
