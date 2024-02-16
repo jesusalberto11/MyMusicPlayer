@@ -19,6 +19,23 @@ struct SongData {
     file_name: String,
 }
 
+/// A Tauri command to retrieve music items, including metadata, from a specified directory.
+///
+/// This function scans the specified directory for MP3 files, extracts their metadata,
+/// and returns a JSON-formatted string containing information about the songs.
+///
+/// # Returns
+///
+/// Returns a `String` representing the JSON-formatted metadata of the songs found in the directory.
+///
+/// If any error occurs during the process, the function returns an error message within the JSON format.
+///
+/// # Examples
+///
+/// ```
+/// let result = get_music_items();
+/// println!("Music Items: {}", result);
+/// ```
 #[tauri::command]
 fn get_music_items() -> String {
     let mut songs = Vec::new();
@@ -37,32 +54,80 @@ fn get_music_items() -> String {
                     };
                 }
             }
-            Err(e) => eprintln!("[ERROR] - {:?}", e),
+            Err(e) => eprintln!("[ERROR] - Error reading song path! {:?}", e),
         }
     }
 
-    let json_string = convert_to_json(songs);
-
-    match json_string {
-        Ok(song_metadata) => song_metadata,
-        Err(_e) => "{}, e".into(),
-    }
+    convert_to_json(songs).unwrap_or_else(|_| "[ERROR] - Can't convert songs to JSON".to_string())
 }
 
+/// Converts a vector of `SongData` into a JSON-formatted string.
+///
+/// # Arguments
+///
+/// * `song_info_vec` - A vector containing `SongData` structs.
+///
+/// # Returns
+///
+/// Returns a `Result` where `Ok` contains the JSON-formatted string, and `Err` contains
+/// a `serde_json::Error` if the conversion fails.
+///
+/// # Examples
+///
+/// ```
+/// let song_info_vec = vec![SongData { /* ... */ }];
+/// let result = convert_to_json(song_info_vec);
+/// assert!(result.is_ok());
+/// ```
 fn convert_to_json(song_info_vec: Vec<SongData>) -> Result<String, Box<dyn std::error::Error>> {
     let json_string = serde_json::to_string(&song_info_vec)?;
     Ok(json_string)
 }
 
+/// Extracts the suffix of a song path, if it starts with the specified prefix.
+///
+/// # Arguments
+///
+/// * `song_path` - A `String` representing the full path of the song.
+///
+/// # Returns
+///
+/// Returns `Some(suffix)` if the `song_path` starts with the specified prefix,
+/// where `suffix` is the part of the path after the prefix. Returns `None` otherwise.
+///
+/// # Examples
+///
+/// ```
+/// let song_path = "C:/Users\\jesus\\Music\\Done\\song.mp3".to_string();
+/// let result = get_song_name(song_path);
+/// assert_eq!(result, Some("song.mp3".to_string()));
+/// ```
 fn get_song_name(song_path: String) -> Option<String> {
-    if let Some(suffix) = song_path.strip_prefix("C:/Users\\jesus\\Music\\Done\\") {
-        Some(suffix.to_string())
-    } else {
-        println!("La cadena no tiene el prefijo esperado.");
-        None
-    }
+    song_path
+        .strip_prefix("C:/Users\\jesus\\Music\\Done\\")
+        .map(|suffix| suffix.to_string())
 }
 
+/// Retrieves metadata for a song and saves its associated image.
+///
+/// # Arguments
+///
+/// * `song_path` - A `String` representing the full path to the song file.
+/// * `song_name` - A `String` representing the name of the song.
+///
+/// # Returns
+///
+/// Returns a `Result` where `Ok` contains a `SongData` struct with metadata, and `Err` contains
+/// an error (boxed as `Box<dyn std::error::Error>`) if any operation fails.
+///
+/// # Examples
+///
+/// ```
+/// let song_path = "C:/Users/jesus/Music/Done/song.mp3".to_string();
+/// let song_name = "song".to_string();
+/// let result = get_song_metadata(song_path, song_name);
+/// assert!(result.is_ok());
+/// ```
 fn get_song_metatadata(
     song_path: String,
     song_name: String,
