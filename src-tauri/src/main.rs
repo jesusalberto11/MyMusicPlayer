@@ -1,6 +1,7 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+use dotenv;
 use glob::glob;
 use id3::{Tag, TagLike};
 use serde::Serialize;
@@ -40,7 +41,7 @@ struct SongData {
 fn get_music_items() -> String {
     let mut songs = Vec::new();
 
-    for entry in glob("C:/Users/jesus/Music/Done/**/*.mp3").expect("Failed to read glob pattern") {
+    for entry in glob(&dotenv::var("MUSIC_PATH").unwrap()).expect("Failed to read glob pattern") {
         match entry {
             Ok(path) => {
                 if let Some(suffix) = get_song_name(path.display().to_string()) {
@@ -104,7 +105,7 @@ fn convert_to_json(song_info_vec: Vec<SongData>) -> Result<String, Box<dyn std::
 /// ```
 fn get_song_name(song_path: String) -> Option<String> {
     song_path
-        .strip_prefix("C:/Users\\jesus\\Music\\Done\\")
+        .strip_prefix(&dotenv::var("MUSIC_STRIP_PREFIX").unwrap())
         .map(|suffix| suffix.to_string())
 }
 
@@ -135,7 +136,8 @@ fn get_song_metatadata(
     let song_file_name: String = song_path.clone().as_str().to_string();
     let tag = Tag::read_from_path(song_path)?;
 
-    create_dir_all("C:/Users/jesus/Music/Done/img").expect("Error creating img directory");
+    create_dir_all(&dotenv::var("SONGS_COVERS_FOLDER").unwrap())
+        .expect("Error creating img directory");
 
     if let Some(picture) = tag.pictures().next() {
         let file_name = Path::new(&song_file_name)
@@ -143,7 +145,11 @@ fn get_song_metatadata(
             .and_then(|name| name.to_str())
             .unwrap_or("unknown");
 
-        let image_path = format!("C:/Users/jesus/Music/Done/img/{}_image.jpg", file_name);
+        let image_path = format!(
+            "{}/{}_image.jpg",
+            &dotenv::var("SONGS_COVERS_FOLDER").unwrap(),
+            file_name
+        );
         let mut image_file = File::create(&image_path).expect("Error creating image file");
 
         image_file
