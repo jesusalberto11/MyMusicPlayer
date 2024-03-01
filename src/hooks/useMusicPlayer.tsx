@@ -28,8 +28,8 @@ export const useMusicPlayer = () => {
     setCurrentSongData(songList[currentSongIndex]);
 
     //AUTOPLAY
-    setCurrentSongPercentaje(0);
-    audioPlayerRef?.current?.play();
+    // setCurrentSongPercentaje(0);
+    // audioPlayerRef?.current?.play();
   }, [currentSongIndex]);
 
   async function loadSongs() {
@@ -62,6 +62,16 @@ export const useMusicPlayer = () => {
     console.log("[DONE] - Loaded music correctly.");
   }
 
+  const handleSetPlay = () => {
+    if (audioPlayerRef.current === null) return;
+
+    audioPlayerRef.current?.play();
+  };
+
+  const handleSetPause = () => {
+    audioPlayerRef.current?.pause();
+  };
+
   async function setCurrentSong(itemName: string, songIndex: number) {
     const audioDirPath = await audioDir();
     const filePath: string = await join(
@@ -74,16 +84,6 @@ export const useMusicPlayer = () => {
     setCurrentSongIndex(songIndex);
     setCurrentSongData(songList[songIndex]);
   }
-
-  // async function setCurrentSongByIndex(songIndex: number) {
-  //   // const audioDirPath = await audioDir();
-  //   // const filePath: string = await join(
-  //   //   audioDirPath + "Done",
-  //   //   songList[songIndex]
-  //   // );
-  //   // const musicUrl: string = convertFileSrc(filePath);
-  //   // setCurrentSongPath(musicUrl);
-  // }
 
   function onSongEnd() {
     setCurrentSongIndex((currentSongIndex) => currentSongIndex + 1);
@@ -143,6 +143,8 @@ export const useMusicPlayer = () => {
 
   return {
     audioPlayerRef,
+    handleSetPlay,
+    handleSetPause,
     currentSongData,
     currentSongPath,
     currentSongIndex,
