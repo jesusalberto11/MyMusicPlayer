@@ -1,38 +1,67 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { convertFileSrc, invoke } from "@tauri-apps/api/tauri";
 import { audioDir, join } from "@tauri-apps/api/path";
 import { Song } from "../interfaces/Song";
+import { useMusicPlayerStore } from "../store/MusicPlayerStore";
 
 export const useMusicPlayer = () => {
-  const audioPlayerRef = useRef<HTMLAudioElement | null>(null);
-  const [currentSongPath, setCurrentSongPath] = useState("");
-  const [currentSongData, setCurrentSongData] = useState({});
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [songList, setSongsList] = useState([]);
-  const [filteredSongList, setFilteredSongList] = useState([]);
-  const [currentSongTotalDuration, setCurrentSongTotalDuration] = useState("");
-  const [currentSongTime, setCurrentSongTime] = useState("");
-  const [currentSongPercentaje, setCurrentSongPercentaje] = useState(0);
+  const audioPlayerRef = useMusicPlayerStore((state) => state.audioPlayerRef);
+
+  const currentSong = useMusicPlayerStore((state) => state.currentSong);
+  const setSong = useMusicPlayerStore((state) => state.setSong);
+  const songs = useMusicPlayerStore((state) => state.songs);
+  const setSongs = useMusicPlayerStore((state) => state.setSongs);
+  const filteredSongs = useMusicPlayerStore((state) => state.filteredSongs);
+  const setFilteredSongs = useMusicPlayerStore(
+    (state) => state.setFilteredSongs
+  );
+  const currentSongTime = useMusicPlayerStore((state) => state.currentSongTime);
+  const setCurrentSongTime = useMusicPlayerStore(
+    (state) => state.setCurrentSongTime
+  );
+  const currentSongTotalDuration = useMusicPlayerStore(
+    (state) => state.currentSongTotalDuration
+  );
+  const setCurrentSongTotalDuration = useMusicPlayerStore(
+    (state) => state.setCurrentSongTotalDuration
+  );
+  const currentSongPercentaje = useMusicPlayerStore(
+    (state) => state.currentSongPercentaje
+  );
+  const setCurrentSongPercentaje = useMusicPlayerStore(
+    (state) => state.setCurrentSongPercentaje
+  );
+  const currentSongPath = useMusicPlayerStore((state) => state.currentSongPath);
+  const setCurrentSongPath = useMusicPlayerStore(
+    (state) => state.setCurrentSongPath
+  );
+  const currentSongIndex = useMusicPlayerStore(
+    (state) => state.currentSongIndex
+  );
+  const setCurrentSongIndex = useMusicPlayerStore(
+    (state) => state.setCurrentSongIndex
+  );
+
+  const isLoadingSongs = useMusicPlayerStore((state) => state.isLoadingSongs);
+  const setIsLoadingSongs = useMusicPlayerStore(
+    (state) => state.setIsLoadingSongs
+  );
+
+  const isSongPlaying = useMusicPlayerStore((state) => state.isSongPlaying);
+  const setIsSongPlaying = useMusicPlayerStore(
+    (state) => state.setIsSongPlaying
+  );
 
   useEffect(() => {
-    loadSongs();
-  }, []);
-
-  useEffect(() => {
-    setCurrentSongPercentaje(0);
-    audioPlayerRef?.current?.play();
-  }, [currentSongPath]);
-
-  useEffect(() => {
-    //setCurrentSongByIndex(currentSongIndex);
-    setCurrentSongData(songList[currentSongIndex]);
-
-    //AUTOPLAY
-    // setCurrentSongPercentaje(0);
-    // audioPlayerRef?.current?.play();
-  }, [currentSongIndex]);
+    if (audioPlayerRef?.current && isSongPlaying) {
+      audioPlayerRef?.current?.play();
+      setIsSongPlaying(true);
+    }
+  }, [currentSong]);
 
   async function loadSongs() {
+    setIsLoadingSongs(true);
+
     const songListNames: any = await invoke("get_music_items");
     const audioDirPath = await audioDir();
     const parsedSongs: any = await JSON.parse(songListNames);
@@ -55,21 +84,26 @@ export const useMusicPlayer = () => {
       a.title.localeCompare(b.title)
     );
 
-    setSongsList(orderedSongs);
-    setFilteredSongList(orderedSongs);
+    setSongs(orderedSongs);
+    setFilteredSongs(orderedSongs);
     setCurrentSongIndex(0);
 
     console.log("[DONE] - Loaded music correctly.");
+    setIsLoadingSongs(false);
   }
 
-  const handleSetPlay = () => {
-    if (audioPlayerRef.current === null) return;
-
-    audioPlayerRef.current?.play();
+  const setPlay = () => {
+    if (audioPlayerRef?.current) {
+      audioPlayerRef?.current?.play();
+      setIsSongPlaying(true);
+    }
   };
 
-  const handleSetPause = () => {
-    audioPlayerRef.current?.pause();
+  const setPause = () => {
+    if (audioPlayerRef?.current) {
+      audioPlayerRef.current?.pause();
+      setIsSongPlaying(false);
+    }
   };
 
   async function setCurrentSong(itemName: string, songIndex: number) {
@@ -82,21 +116,23 @@ export const useMusicPlayer = () => {
 
     setCurrentSongPath(musicUrl);
     setCurrentSongIndex(songIndex);
-    setCurrentSongData(songList[songIndex]);
+    setSong(songs[songIndex]);
   }
 
   function onSongEnd() {
-    setCurrentSongIndex((currentSongIndex) => currentSongIndex + 1);
+    setCurrentSongIndex(currentSongIndex + 1);
     setCurrentSongPercentaje(0);
+    setCurrentSongTime(`0:00`);
+    setIsSongPlaying(false);
   }
 
   const handleSongProgressBarClick = (
     progressWidthValue: number,
     clickedOffsetX: number
   ) => {
-    const musicDuration = audioPlayerRef.current?.duration || 0;
+    if (audioPlayerRef?.current === null) return;
 
-    if (audioPlayerRef.current === null) return;
+    const musicDuration = audioPlayerRef.current?.duration || 0;
 
     if (progressWidthValue !== 0 && musicDuration !== 0) {
       audioPlayerRef.current.currentTime =
@@ -134,18 +170,18 @@ export const useMusicPlayer = () => {
   }
 
   const filterSongList = (searchText: string) => {
-    const filteredSongList = songList.filter((item: Song) =>
+    const filteredSongList = songs.filter((item: Song) =>
       item.title.toLowerCase().includes(searchText)
     );
 
-    setFilteredSongList(filteredSongList);
+    setFilteredSongs(filteredSongList);
   };
 
   return {
     audioPlayerRef,
-    handleSetPlay,
-    handleSetPause,
-    currentSongData,
+    setPlay,
+    setPause,
+    currentSong,
     currentSongPath,
     currentSongIndex,
     currentSongTime,
@@ -154,10 +190,13 @@ export const useMusicPlayer = () => {
     handleSongCurrentTime,
     handleCurrentSongTotalDuration,
     handleSongProgressBarClick,
-    songList,
+    songs,
+    isSongPlaying,
+    isLoadingSongs,
     setCurrentSong,
     onSongEnd,
-    filteredSongList,
+    filteredSongs,
     filterSongList,
+    loadSongs,
   };
 };
