@@ -2,21 +2,16 @@ import "../styles/pages/MainPage.css";
 import PageContainer from "../components/layout/PageContainer";
 import SongList from "../components/pages/MainPage/SongList";
 import MainPageHeader from "../components/pages/MainPage/MainPageHeader";
-import { Song } from "../interfaces/Song";
+import { useMusicPlayer } from "../hooks/useMusicPlayer";
 
-const MainPage = (props: {
-  filterSongList: any;
-  songList: Song[];
-  setCurrentSong: any;
-}) => {
+const MainPage = () => {
+  const { filteredSongs, setCurrentSong, filterSongList } = useMusicPlayer();
+
   return (
     <PageContainer title="MyMusic">
-      <MainPageHeader filterSongList={props.filterSongList} />
+      <MainPageHeader filterSongList={filterSongList} />
       <div className="list-container">
-        <SongList
-          songList={props.songList}
-          setCurrentSong={props.setCurrentSong}
-        />
+        <SongList songList={filteredSongs} setCurrentSong={setCurrentSong} />
       </div>
     </PageContainer>
   );
