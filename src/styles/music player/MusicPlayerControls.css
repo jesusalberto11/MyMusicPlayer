@@ -33,14 +33,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 5px;
 
   transition: all 0.2s;
 }
 
 .play-button:active {
   transform: scale(95%);
-  padding-left: 4px;
 }
 
 .play-button:hover {
