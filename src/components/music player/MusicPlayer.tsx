@@ -1,26 +1,28 @@
 import "../../styles/music player/MusicPlayer.css";
-import { Song } from "../../interfaces/Song";
 import CurrentSongDetails from "./CurrentSongDetails";
 import MusicPlayerControls from "./MusicPlayerControls";
 import ProgressBar from "./ProgressBar";
+import { useMusicPlayer } from "../../hooks/useMusicPlayer";
 
-const MusicPlayer = (props: {
-  currentSongData: Song;
-  currentSongTime: string;
-  currentSongTotalDuration: string;
-  currentSongPercentaje: number;
-  handleSongProgressBarClick: any;
-}) => {
+const MusicPlayer = () => {
+  const {
+    currentSong,
+    currentSongTotalDuration,
+    handleSongProgressBarClick,
+    currentSongTime,
+    currentSongPercentaje,
+  } = useMusicPlayer();
+
   return (
     <div className="music-player">
       <ProgressBar
-        handleSongProgressBarClick={props.handleSongProgressBarClick}
-        currentSongTime={props.currentSongTime}
-        currentSongTotalDuration={props.currentSongTotalDuration}
-        currentSongPercentaje={props.currentSongPercentaje}
+        handleSongProgressBarClick={handleSongProgressBarClick}
+        currentSongTime={currentSongTime}
+        currentSongTotalDuration={currentSongTotalDuration}
+        currentSongPercentaje={currentSongPercentaje}
       />
       <div className="music-player-bottom">
-        <CurrentSongDetails currentSongData={props.currentSongData} />
+        <CurrentSongDetails currentSongData={currentSong} />
         <MusicPlayerControls />
       </div>
     </div>

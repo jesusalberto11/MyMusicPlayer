@@ -1,8 +1,8 @@
 import "../../styles/music player/ProgressBar.css";
 
 const ProgressBar = (props: {
-  currentSongTime: string;
-  currentSongTotalDuration: string;
+  currentSongTime: string | null;
+  currentSongTotalDuration: string | null;
   currentSongPercentaje: number;
   handleSongProgressBarClick: any;
 }) => {

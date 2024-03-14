@@ -1,9 +1,9 @@
 import "../../styles/music player/CurrentSongDetails.css";
-import { Song } from "../../interfaces/Song";
 import noCoverImg from "../../assets/no-cover.png";
 import { useEffect, useRef, useState } from "react";
+import { ISong } from "../../interfaces/ISong";
 
-const CurrentSongDetails = (props: { currentSongData: Song }) => {
+const CurrentSongDetails = (props: { currentSongData: ISong | null }) => {
   const songAlbumContainer = useRef<null | HTMLDivElement>(null);
   const songAlbumText = useRef<null | HTMLDivElement>(null);
   const [songAlbumTextIsBigger, setSongAlbumTextIsBigger] = useState(false);
