@@ -117,6 +117,7 @@ export const useMusicPlayer = () => {
     setCurrentSongPath(musicUrl);
     setCurrentSongIndex(songIndex);
     setSong(songs[songIndex]);
+    setIsSongPlaying(true);
   }
 
   function onSongEnd() {
