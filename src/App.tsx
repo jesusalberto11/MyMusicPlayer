@@ -1,39 +1,32 @@
-import { Outlet } from "react-router-dom";
 import "./App.css";
 import Sidebar from "./components/layout/Sidebar";
 import MusicPlayer from "./components/music player/MusicPlayer";
+import { Outlet } from "react-router-dom";
 import { useMusicPlayer } from "./hooks/useMusicPlayer";
-import MainPage from "./pages/MainPage";
+import { useEffect } from "react";
 
 function App() {
   const {
     audioPlayerRef,
-    currentSongData,
+    loadSongs,
+    currentSong,
     currentSongPath,
-    currentSongTotalDuration,
     handleSongCurrentTime,
-    handleSongProgressBarClick,
-    currentSongTime,
-    currentSongPercentaje,
     onSongEnd,
-    setCurrentSong,
     handleCurrentSongTotalDuration,
-    filteredSongList,
-    filterSongList,
   } = useMusicPlayer();
+
+  useEffect(() => {
+    loadSongs();
+  }, []);
 
   return (
     <div className="app-container">
       <Sidebar />
       <div className="main-content">
         <Outlet />
-        <MainPage
-          filterSongList={filterSongList}
-          songList={filteredSongList}
-          setCurrentSong={setCurrentSong}
-        />
       </div>
-      {currentSongPath !== "" && (
+      {currentSong !== null && (
         <audio
           ref={audioPlayerRef}
           id="main-audio"
@@ -43,13 +36,7 @@ function App() {
           onTimeUpdate={handleSongCurrentTime}
         ></audio>
       )}
-      <MusicPlayer
-        currentSongData={currentSongData}
-        currentSongTime={currentSongTime}
-        currentSongTotalDuration={currentSongTotalDuration}
-        currentSongPercentaje={currentSongPercentaje}
-        handleSongProgressBarClick={handleSongProgressBarClick}
-      />
+      <MusicPlayer />
     </div>
   );
 }
