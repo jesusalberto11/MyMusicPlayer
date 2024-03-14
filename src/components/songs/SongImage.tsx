@@ -8,8 +8,10 @@ const SongImage = (props: { imageSrc: string; height?: string }) => {
   return (
     <img
       src={props?.imageSrc ? props?.imageSrc : noCoverImg}
+      alt="song-cover"
       className="song-list-item-img"
       style={{ height: checkHeight() }}
+      loading="lazy"
     />
   );
 };
