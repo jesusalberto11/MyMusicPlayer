@@ -3,6 +3,7 @@ import PageContainer from "../components/layout/PageContainer";
 import ChangeTheme from "../components/pages/SettingsPage/ChangeTheme";
 import SettingsItem from "../components/pages/SettingsPage/SettingsItem";
 import { SVG_ICONS } from "../helpers/svgIcons";
+import ChangeLanguage from "../components/pages/SettingsPage/ChangeLanguage";
 
 const SettingsPage = () => {
   const [t] = useTranslation("global");
@@ -15,7 +16,7 @@ const SettingsPage = () => {
         description={t("SETTINGS-PAGE.CHANGE-LANG-DESC")}
         icon={SVG_ICONS.THEME}
       >
-        <p>Change lang</p>
+        <ChangeLanguage />
       </SettingsItem>
       <SettingsItem
         title={t("SETTINGS-PAGE.CHANGE-THEME-TITLE")}
