@@ -7,7 +7,7 @@
 }
 
 li:nth-child(odd) {
-  background-color: #1e2329;
+  background-color: var(--song-list-odd-item-bg-color);
 }
 
 .song-list-item {
@@ -18,7 +18,7 @@ li:nth-child(odd) {
   width: 99%;
 
   border-radius: 5px;
-  border: 1px solid #2d3137;
+  border: var(--song-list-border);
 
   font-size: 14px;
 
@@ -50,7 +50,7 @@ li:nth-child(odd) {
 }
 
 .song-list-item:hover {
-  background-color: #22272d;
+  background-color: var(--song-list-item-hover-color);
 }
 
 .song-list-item-img {
