@@ -1,0 +1,19 @@
+.settings-item-container {
+  background-color: #2d3137;
+
+  height: 50px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 5px;
+
+  padding: 5px 15px;
+}
+
+.settings-item-title {
+  font-size: 24px;
+  font-weight: bold;
+}
