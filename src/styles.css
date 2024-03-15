@@ -9,7 +9,16 @@
 :root {
   --page-text-color: white;
   --page-bg-color: #161b22;
+
+  --song-list-item-hover-color: #343a40;
+  --song-list-odd-item-bg-color: #1e2329;
+  --song-list-border: 1px solid #2d3137;
+
   --music-player-bg-color: #1e2329;
+  --music-player-play-button: #22272d;
+  --music-player-artist-album: #c5c5c5;
+
+  --setings-item-bg-color: #2d3137;
 
   --simple-button-text-color: #b2b6ff;
   --simple-button-svg-icon-color: white;
@@ -20,14 +29,23 @@
 
 .light-mode {
   --page-text-color: black;
-  --page-bg-color: #fff;
-  --music-player-bg-color: #fff;
+  --page-bg-color: #f8f9fa;
 
-  --simple-button-text-color: #b2b6ff;
-  --simple-button-svg-icon-color: white;
-  --simple-button-bg-color: #161b22;
+  --song-list-item-hover-color: #adb5bd;
+  --song-list-odd-item-bg-color: #ced4da;
+  --song-list-border: 1px solid #adb5bd;
+
+  --music-player-bg-color: #e9ecef;
+  --music-player-play-button: #f8f9fa;
+  --music-player-artist-album: #6c757d;
+
+  --setings-item-bg-color: #dee2e6;
+
+  --simple-button-text-color: black;
+  --simple-button-svg-icon-color: black;
+  --simple-button-bg-color: #fff;
   --simple-button-hover-color: drop-shadow(0 0 8px #8b91ff);
-  --simple-button-border: 1px solid #30363d;
+  --simple-button-border: 1px solid #dbdbdb;
 }
 
 * {
@@ -36,7 +54,7 @@
   padding: 0;
 }
 
-:root {
+body {
   font-family: "Plus Jakarta Sans", Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -78,6 +96,24 @@ hr {
 svg {
   min-width: 16px;
   fill: var(--simple-button-svg-icon-color);
+}
+
+select {
+  cursor: pointer;
+
+  width: fit-content;
+
+  background-color: var(--simple-button-bg-color);
+  color: var(--page-text-color);
+
+  border: var(--simple-button-border);
+  border-radius: 5px;
+
+  padding: 10px 10px;
+}
+
+select:hover {
+  filter: var(--simple-button-hover-color);
 }
 
 .flex {
