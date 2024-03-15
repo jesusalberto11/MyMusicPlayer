@@ -10,7 +10,7 @@
 }
 
 .progress-area-container span {
-  color: white;
+  color: var(--page-text-color);
 
   font-size: 14px;
   font-weight: bold;
