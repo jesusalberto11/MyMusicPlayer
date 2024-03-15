@@ -21,9 +21,8 @@
   height: 60px;
   width: 60px;
 
-  background-color: #22272d;
-
-  color: #fff;
+  background-color: var(--music-player-play-button);
+  color: var(--page-text-color);
 
   border: 5px solid #4361ee;
   border-radius: 50%;
