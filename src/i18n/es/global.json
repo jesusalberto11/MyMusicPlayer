@@ -1,0 +1,11 @@
+{
+  "SETTINGS-PAGE": {
+    "SETTINGS-PAGE-TITLE": "Ajustes",
+    "CHANGE-LANG-TITLE": "Idioma",
+    "CHANGE-LANG-DESC": "Cambia el idioma de la aplicación.",
+    "CHANGE-THEME-TITLE": "Tema",
+    "CHANGE-THEME-DESC": "Cambia el tema de la aplicación.",
+    "CHANGE-THEME-DARK": "Oscuro (Recomendado)",
+    "CHANGE-THEME-LIGHT": "Claro"
+  }
+}
