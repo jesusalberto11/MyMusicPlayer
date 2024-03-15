@@ -4,8 +4,11 @@ import MusicPlayer from "./components/music player/MusicPlayer";
 import { Outlet } from "react-router-dom";
 import { useMusicPlayer } from "./hooks/useMusicPlayer";
 import { useEffect } from "react";
+import { useTheme } from "./hooks/useTheme";
 
 function App() {
+  const { checkSavedTheme } = useTheme();
+
   const {
     audioPlayerRef,
     loadSongs,
@@ -17,6 +20,7 @@ function App() {
   } = useMusicPlayer();
 
   useEffect(() => {
+    checkSavedTheme();
     loadSongs();
   }, []);
 
