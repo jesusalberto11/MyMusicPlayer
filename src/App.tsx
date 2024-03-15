@@ -5,9 +5,11 @@ import { Outlet } from "react-router-dom";
 import { useMusicPlayer } from "./hooks/useMusicPlayer";
 import { useEffect } from "react";
 import { useTheme } from "./hooks/useTheme";
+import { useLanguage } from "./hooks/useLanguage";
 
 function App() {
   const { checkSavedTheme } = useTheme();
+  const { checkSavedLanguage } = useLanguage();
 
   const {
     audioPlayerRef,
@@ -21,6 +23,7 @@ function App() {
 
   useEffect(() => {
     checkSavedTheme();
+    checkSavedLanguage();
     loadSongs();
   }, []);
 
