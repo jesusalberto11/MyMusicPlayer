@@ -31,10 +31,10 @@
 
   width: fit-content;
 
-  background-color: #1e2329;
-  color: white;
+  background-color: var(--simple-button-bg-color);
+  color: var(--page-text-color);
 
-  border: 1px solid #2d3137;
+  border: var(--simple-button-border);
   border-radius: 5px;
 
   padding: 10px 10px;
@@ -59,10 +59,10 @@
   min-width: 40px;
   max-width: 240px;
 
-  background-color: #1e2329;
-  color: white;
+  background-color: var(--simple-button-bg-color);
+  color: var(--page-text-color);
 
-  border: 1px solid #2d3137;
+  border: var(--simple-button-border);
   border-radius: 5px;
 
   padding: 10px 10px;
@@ -73,25 +73,7 @@
 }
 
 .searchbar::placeholder {
-  color: #c5c5c5;
-}
-
-select {
-  cursor: pointer;
-
-  width: fit-content;
-
-  background-color: #1e2329;
-  color: white;
-
-  border: 1px solid #2d3137;
-  border-radius: 5px;
-
-  padding: 10px 10px;
-}
-
-select:hover {
-  filter: var(--simple-button-hover-color);
+  color: var(--music-player-artist-album);
 }
 
 @media screen and (max-width: 728px) {
