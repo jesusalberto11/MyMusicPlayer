@@ -1,5 +1,6 @@
 .settings-item-container {
-  background-color: #2d3137;
+  background-color: var(--setings-item-bg-color);
+  color: var(--page-text-color);
 
   height: auto;
   width: 100%;
