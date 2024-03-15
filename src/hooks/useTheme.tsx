@@ -4,7 +4,6 @@ export const useTheme = () => {
   const [selectedTheme, setSelectedTheme] = useState<string>("");
 
   const checkSavedTheme = () => {
-    console.log("Saved theme: " + localStorage.getItem("theme"));
     if (localStorage.getItem("theme")) {
       const theme = localStorage.getItem("theme") || "dark";
       changeTheme(theme);
