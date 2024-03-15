@@ -79,3 +79,16 @@ svg {
   min-width: 16px;
   fill: var(--simple-button-svg-icon-color);
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.centered {
+  align-items: center;
+  justify-content: center;
+}
