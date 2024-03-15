@@ -1,7 +1,7 @@
 .settings-item-container {
   background-color: #2d3137;
 
-  height: 50px;
+  height: auto;
   width: 100%;
 
   display: flex;
@@ -10,10 +10,24 @@
 
   border-radius: 5px;
 
-  padding: 5px 15px;
+  padding: 10px 15px;
 }
 
 .settings-item-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
+}
+
+.settings-item-description {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .settings-item-title {
+    font-size: 18px;
+  }
+
+  .settings-item-description {
+    font-size: 12px;
+  }
 }
