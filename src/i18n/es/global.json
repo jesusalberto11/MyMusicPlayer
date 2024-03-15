@@ -3,6 +3,8 @@
     "SETTINGS-PAGE-TITLE": "Ajustes",
     "CHANGE-LANG-TITLE": "Idioma",
     "CHANGE-LANG-DESC": "Cambia el idioma de la aplicación.",
+    "CHANGE-LANG-ES": "Español",
+    "CHANGE-LANG-EN": "Ingles",
     "CHANGE-THEME-TITLE": "Tema",
     "CHANGE-THEME-DESC": "Cambia el tema de la aplicación.",
     "CHANGE-THEME-DARK": "Oscuro (Recomendado)",
