@@ -6,10 +6,22 @@
   font-display: swap;
 }
 
-html {
+:root {
   --page-text-color: white;
   --page-bg-color: #161b22;
   --music-player-bg-color: #1e2329;
+
+  --simple-button-text-color: #b2b6ff;
+  --simple-button-svg-icon-color: white;
+  --simple-button-bg-color: #161b22;
+  --simple-button-hover-color: drop-shadow(0 0 8px #8b91ff);
+  --simple-button-border: 1px solid #30363d;
+}
+
+.light-mode {
+  --page-text-color: black;
+  --page-bg-color: #fff;
+  --music-player-bg-color: #fff;
 
   --simple-button-text-color: #b2b6ff;
   --simple-button-svg-icon-color: white;
