@@ -1,4 +1,12 @@
 {
+  "MAIN-PAGE-HEADER": {
+    "SEARCH-SONG": "Search a song...",
+    "SORT-BY": "Sort by:",
+    "SORT-BY-ARTIST": "Artist",
+    "SORT-BY-ALBUM": "Album",
+    "SORT-BY-YEAR": "Year",
+    "PICK-RANDOM": "Pick a random song"
+  },
   "MUSIC-PLAYER": {
     "NO-SONG-PLAYING": "No Song playing",
     "UNKNOWN-ARTIST": "Unknown artist",
