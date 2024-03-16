@@ -2,8 +2,10 @@ import "../../styles/music player/CurrentSongDetails.css";
 import noCoverImg from "../../assets/no-cover.png";
 import { useEffect, useRef, useState } from "react";
 import { ISong } from "../../interfaces/ISong";
+import { useTranslation } from "react-i18next";
 
 const CurrentSongDetails = (props: { currentSongData: ISong | null }) => {
+  const [t] = useTranslation("global");
   const songAlbumContainer = useRef<null | HTMLDivElement>(null);
   const songAlbumText = useRef<null | HTMLDivElement>(null);
   const [songAlbumTextIsBigger, setSongAlbumTextIsBigger] = useState(false);
@@ -32,13 +34,13 @@ const CurrentSongDetails = (props: { currentSongData: ISong | null }) => {
         <h2 className="song-name">
           {props.currentSongData?.title
             ? props.currentSongData?.title
-            : "No Song playing"}
+            : t("MUSIC-PLAYER.NO-SONG-PLAYING")}
         </h2>
         <div className="song-artist-album-container">
           <p className="song-artist">
             {props.currentSongData?.artist
               ? props.currentSongData?.artist
-              : "Unknown artist"}
+              : t("MUSIC-PLAYER.UNKNOWN-ARTIST")}
           </p>
           <p>●</p>
           <div ref={songAlbumContainer} className="song-album">
@@ -52,7 +54,7 @@ const CurrentSongDetails = (props: { currentSongData: ISong | null }) => {
             >
               {props.currentSongData?.album
                 ? props.currentSongData?.album
-                : "Unknown album"}
+                : t("MUSIC-PLAYER.UNKNOWN-ALBUM")}
             </p>
           </div>
         </div>
