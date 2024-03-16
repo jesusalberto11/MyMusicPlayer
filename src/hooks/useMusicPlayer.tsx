@@ -178,6 +178,20 @@ export const useMusicPlayer = () => {
     setFilteredSongs(filteredSongList);
   };
 
+  const getPlayerVolume = () => {
+    if (audioPlayerRef?.current) {
+      console.log(audioPlayerRef.current.volume);
+      return audioPlayerRef.current.volume;
+    }
+  };
+
+  const changePlayerVolume = (newVolume: number) => {
+    if (audioPlayerRef?.current) {
+      audioPlayerRef.current.volume = newVolume;
+      console.log(audioPlayerRef.current.volume);
+    }
+  };
+
   return {
     audioPlayerRef,
     setPlay,
@@ -199,5 +213,7 @@ export const useMusicPlayer = () => {
     filteredSongs,
     filterSongList,
     loadSongs,
+    getPlayerVolume,
+    changePlayerVolume,
   };
 };
