@@ -1,4 +1,9 @@
 {
+  "MUSIC-PLAYER": {
+    "NO-SONG-PLAYING": "No hay una canción sonando",
+    "UNKNOWN-ARTIST": "Artista desconocido",
+    "UNKNOWN-ALBUM": "Album desconocido"
+  },
   "SETTINGS-PAGE": {
     "SETTINGS-PAGE-TITLE": "Ajustes",
     "CHANGE-LANG-TITLE": "Idioma",
