@@ -180,7 +180,6 @@ export const useMusicPlayer = () => {
 
   const getPlayerVolume = () => {
     if (audioPlayerRef?.current) {
-      console.log(audioPlayerRef.current.volume);
       return audioPlayerRef.current.volume;
     }
   };
@@ -188,7 +187,6 @@ export const useMusicPlayer = () => {
   const changePlayerVolume = (newVolume: number) => {
     if (audioPlayerRef?.current) {
       audioPlayerRef.current.volume = newVolume;
-      console.log(audioPlayerRef.current.volume);
     }
   };
 
