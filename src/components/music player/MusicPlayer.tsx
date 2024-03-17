@@ -2,6 +2,7 @@ import "../../styles/music player/MusicPlayer.css";
 import CurrentSongDetails from "./CurrentSongDetails";
 import MusicPlayerControls from "./MusicPlayerControls";
 import ProgressBar from "./ProgressBar";
+import VolumeControl from "./VolumeControl";
 import { useMusicPlayer } from "../../hooks/useMusicPlayer";
 
 const MusicPlayer = () => {
@@ -24,6 +25,9 @@ const MusicPlayer = () => {
       <div className="music-player-bottom">
         <CurrentSongDetails currentSongData={currentSong} />
         <MusicPlayerControls />
+        <div className="flex centered">
+          <VolumeControl />
+        </div>
       </div>
     </div>
   );
