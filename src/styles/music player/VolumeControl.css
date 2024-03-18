@@ -1,17 +1,8 @@
-.volume-control-container {
-  position: relative;
-}
-
 .volume-panel {
   background-color: var(--simple-button-bg-color);
   border: var(--simple-button-border);
 
   width: 180px;
-
-  position: absolute;
-  top: -50px;
-  left: -80px;
-  z-index: 999;
 
   padding: 10px;
   border-radius: 10px;
@@ -124,4 +115,86 @@ input[type="range"]:focus::-ms-fill-lower {
 
 input[type="range"]:focus::-ms-fill-upper {
   background: #c5c5c5;
+}
+
+.dialog-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: red;
+
+  z-index: 999999999;
+
+  position: relative;
+  left: 100%;
+  bottom: 10px;
+}
+
+dialog {
+  height: auto;
+  width: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  place-self: flex-end;
+
+  border-radius: 15px;
+  border: 1px solid #c5c5c5;
+}
+
+/*   Open state of the dialog  */
+dialog[open] {
+  pointer-events: all;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/*   Closed state of the dialog   */
+dialog {
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.9);
+
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out,
+    overlay 0.2s ease-out allow-discrete, display 0.2s ease-out allow-discrete;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+/*   Before-open state  */
+/* Needs to be after the previous dialog[open] rule to take effect,
+    as the specificity is the same */
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Transition the :backdrop when the dialog modal is promoted to the top layer */
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0%);
+  transition: display 0.2s allow-discrete, overlay 0.2s allow-discrete,
+    background-color 0.2s;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+dialog[open]::backdrop {
+  background-color: rgb(0 0 0 / 25%);
+}
+
+/* This starting-style rule cannot be nested inside the above selector
+because the nesting selector cannot represent pseudo-elements. */
+
+@starting-style {
+  dialog[open]::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+  }
 }
