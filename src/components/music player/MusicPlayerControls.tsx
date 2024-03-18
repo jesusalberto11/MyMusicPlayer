@@ -14,19 +14,14 @@ const MusicPlayerControls = () => {
           title="Previous song"
           icon={SVG_ICONS.SKIP_START}
         />
-        {isSongPlaying ? (
-          <button className="play-button" onClick={() => setPause()}>
-            <svg width="32" height="32" fill="#fff" viewBox="0 0 16 16">
-              <path d={SVG_ICONS.PAUSE} />
-            </svg>
-          </button>
-        ) : (
-          <button className="play-button" onClick={() => setPlay()}>
-            <svg width="32" height="32" fill="#fff" viewBox="0 0 16 16">
-              <path d={SVG_ICONS.PLAY} />
-            </svg>
-          </button>
-        )}
+        <button
+          className="play-button"
+          onClick={isSongPlaying ? () => setPause() : () => setPlay()}
+        >
+          <svg width="32" height="32" fill="#fff" viewBox="0 0 16 16">
+            <path d={isSongPlaying ? SVG_ICONS.PAUSE : SVG_ICONS.PLAY} />
+          </svg>
+        </button>
         <SimpleButton
           showTitle={false}
           title="Next song"
