@@ -7,6 +7,12 @@
     "SORT-BY-YEAR": "Año",
     "PICK-RANDOM": "Poner una canción al azar"
   },
+  "SONG-DATA": {
+    "TITLE": "Título",
+    "ALBUM": "Álbum",
+    "ARTIST": "Artista",
+    "YEAR": "Año"
+  },
   "MUSIC-PLAYER": {
     "NO-SONG-PLAYING": "No hay una canción sonando",
     "UNKNOWN-ARTIST": "Artista desconocido",
