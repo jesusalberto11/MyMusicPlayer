@@ -1,56 +1,33 @@
 import { useEffect } from "react";
 import { convertFileSrc, invoke } from "@tauri-apps/api/tauri";
-import { audioDir, join } from "@tauri-apps/api/path";
+import { audioDir } from "@tauri-apps/api/path";
 import { Song } from "../interfaces/Song";
 import { useMusicPlayerStore } from "../store/MusicPlayerStore";
 
 export const useMusicPlayer = () => {
-  const audioPlayerRef = useMusicPlayerStore((state) => state.audioPlayerRef);
-
-  const currentSong = useMusicPlayerStore((state) => state.currentSong);
-  const setSong = useMusicPlayerStore((state) => state.setSong);
-  const songs = useMusicPlayerStore((state) => state.songs);
-  const setSongs = useMusicPlayerStore((state) => state.setSongs);
-  const filteredSongs = useMusicPlayerStore((state) => state.filteredSongs);
-  const setFilteredSongs = useMusicPlayerStore(
-    (state) => state.setFilteredSongs
-  );
-  const currentSongTime = useMusicPlayerStore((state) => state.currentSongTime);
-  const setCurrentSongTime = useMusicPlayerStore(
-    (state) => state.setCurrentSongTime
-  );
-  const currentSongTotalDuration = useMusicPlayerStore(
-    (state) => state.currentSongTotalDuration
-  );
-  const setCurrentSongTotalDuration = useMusicPlayerStore(
-    (state) => state.setCurrentSongTotalDuration
-  );
-  const currentSongPercentaje = useMusicPlayerStore(
-    (state) => state.currentSongPercentaje
-  );
-  const setCurrentSongPercentaje = useMusicPlayerStore(
-    (state) => state.setCurrentSongPercentaje
-  );
-  const currentSongPath = useMusicPlayerStore((state) => state.currentSongPath);
-  const setCurrentSongPath = useMusicPlayerStore(
-    (state) => state.setCurrentSongPath
-  );
-  const currentSongIndex = useMusicPlayerStore(
-    (state) => state.currentSongIndex
-  );
-  const setCurrentSongIndex = useMusicPlayerStore(
-    (state) => state.setCurrentSongIndex
-  );
-
-  const isLoadingSongs = useMusicPlayerStore((state) => state.isLoadingSongs);
-  const setIsLoadingSongs = useMusicPlayerStore(
-    (state) => state.setIsLoadingSongs
-  );
-
-  const isSongPlaying = useMusicPlayerStore((state) => state.isSongPlaying);
-  const setIsSongPlaying = useMusicPlayerStore(
-    (state) => state.setIsSongPlaying
-  );
+  const {
+    audioPlayerRef,
+    currentSong,
+    setSong,
+    songs,
+    setSongs,
+    filteredSongs,
+    setFilteredSongs,
+    currentSongTime,
+    setCurrentSongTime,
+    currentSongTotalDuration,
+    setCurrentSongTotalDuration,
+    currentSongPercentaje,
+    setCurrentSongPercentaje,
+    currentSongPath,
+    setCurrentSongPath,
+    currentSongIndex,
+    setCurrentSongIndex,
+    isLoadingSongs,
+    setIsLoadingSongs,
+    isSongPlaying,
+    setIsSongPlaying,
+  } = useMusicPlayerStore();
 
   useEffect(() => {
     if (audioPlayerRef?.current && isSongPlaying) {
@@ -73,11 +50,15 @@ export const useMusicPlayer = () => {
       );
       song.file_name = formattedSongFileName;
 
+      const filePath: string = audioDirPath + "Done/" + song.file_name + ".mp3";
+      song.file_url = convertFileSrc(filePath);
+
       if (!song.image) return;
-      const filePath: string =
+
+      const songImgFilePath: string =
         audioDirPath + `Done/img/${formattedSongFileName}_image.jpg`;
-      const musicUrl: string = convertFileSrc(filePath);
-      song.image = musicUrl;
+
+      song.image = convertFileSrc(songImgFilePath);
     });
 
     const orderedSongs: any = [...parsedSongs].sort((a, b) =>
@@ -106,15 +87,8 @@ export const useMusicPlayer = () => {
     }
   };
 
-  async function setCurrentSong(itemName: string, songIndex: number) {
-    const audioDirPath = await audioDir();
-    const filePath: string = await join(
-      audioDirPath + "Done",
-      itemName + ".mp3"
-    );
-    const musicUrl: string = convertFileSrc(filePath);
-
-    setCurrentSongPath(musicUrl);
+  async function setCurrentSong(songUrl: string, songIndex: number) {
+    setCurrentSongPath(songUrl);
     setCurrentSongIndex(songIndex);
     setSong(songs[songIndex]);
     setIsSongPlaying(true);
