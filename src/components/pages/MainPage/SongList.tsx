@@ -6,15 +6,10 @@ const SongList = (props: { songList: Song[]; setCurrentSong: any }) => {
   return (
     <ol className="song-list">
       {props.songList &&
-        props.songList.map((item: Song, index) => (
+        props.songList.map((song: Song, index) => (
           <SongListItem
             key={index}
-            image={item?.image}
-            title={item?.title}
-            artist={item?.artist}
-            album={item?.album}
-            year={item?.year}
-            file_name={item?.file_name}
+            song={song}
             index={index}
             setCurrentSong={props.setCurrentSong}
           />
