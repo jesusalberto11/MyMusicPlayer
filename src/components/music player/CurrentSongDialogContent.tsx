@@ -3,11 +3,14 @@ import { ISong } from "../../interfaces/ISong";
 import SongImage from "../songs/SongImage";
 import SimpleButton from "../shared/SimpleButton";
 import { SVG_ICONS } from "../../helpers/svgIcons";
+import { useTranslation } from "react-i18next";
 
 const CurrentSongDialogContent = (props: {
   currentSongData: ISong | null;
   closeDialog: Function;
 }) => {
+  const [t] = useTranslation("global");
+
   return (
     <div>
       <div className="dialog-close-btn">
@@ -33,14 +36,14 @@ const CurrentSongDialogContent = (props: {
       <div className="song-dialog-content flex centered">
         {props.currentSongData ? (
           <>
-            <p className="song-dialog-item-title">Album</p>
+            <p className="song-dialog-item-title">{t("SONG-DATA.ALBUM")}</p>
             <p>{props.currentSongData?.album}</p>
             <hr />
-            <p className="song-dialog-item-title">Year</p>
+            <p className="song-dialog-item-title">{t("SONG-DATA.YEAR")}</p>
             <p>{props.currentSongData?.year}</p>
           </>
         ) : (
-          <p>No hay una canción sonando.</p>
+          <p>{t("MUSIC-PLAYER.NO-SONG-PLAYING")}</p>
         )}
       </div>
     </div>
