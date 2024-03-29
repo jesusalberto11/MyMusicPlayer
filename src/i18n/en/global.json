@@ -11,12 +11,15 @@
     "TITLE": "Title",
     "ALBUM": "Album",
     "ARTIST": "Artist",
-    "YEAR": "Year"
+    "YEAR": "Year",
+    "GENRES": "Genres"
   },
   "MUSIC-PLAYER": {
     "NO-SONG-PLAYING": "No Song playing",
     "UNKNOWN-ARTIST": "Unknown artist",
-    "UNKNOWN-ALBUM": "Unknown album"
+    "UNKNOWN-ALBUM": "Unknown album",
+    "UNKNOWN-GENRES": "Unknown genres",
+    "UNKNOWN-YEAR": "Unknown year"
   },
   "SETTINGS-PAGE": {
     "SETTINGS-PAGE-TITLE": "Settings",

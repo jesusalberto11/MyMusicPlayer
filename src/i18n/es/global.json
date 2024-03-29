@@ -11,12 +11,15 @@
     "TITLE": "Título",
     "ALBUM": "Álbum",
     "ARTIST": "Artista",
-    "YEAR": "Año"
+    "YEAR": "Año",
+    "GENRES": "Generos"
   },
   "MUSIC-PLAYER": {
     "NO-SONG-PLAYING": "No hay una canción sonando",
     "UNKNOWN-ARTIST": "Artista desconocido",
-    "UNKNOWN-ALBUM": "Album desconocido"
+    "UNKNOWN-ALBUM": "Album desconocido",
+    "UNKNOWN-GENRES": "Generos desconocidos",
+    "UNKNOWN-YEAR": "Año desconocido"
   },
   "SETTINGS-PAGE": {
     "SETTINGS-PAGE-TITLE": "Ajustes",
