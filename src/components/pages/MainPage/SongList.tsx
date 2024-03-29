@@ -1,12 +1,12 @@
 import "../../../styles/pages/SongList.css";
-import { Song } from "../../../interfaces/Song";
 import SongListItem from "./SongListItem";
+import { ISong } from "../../../interfaces/ISong";
 
-const SongList = (props: { songList: Song[]; setCurrentSong: any }) => {
+const SongList = (props: { songList: ISong[]; setCurrentSong: any }) => {
   return (
     <ol className="song-list">
       {props.songList &&
-        props.songList.map((song: Song, index) => (
+        props.songList.map((song: ISong, index) => (
           <SongListItem
             key={index}
             song={song}

@@ -1,8 +1,8 @@
-import { Song } from "../../../interfaces/Song";
+import { ISong } from "../../../interfaces/ISong";
 import SongImage from "../../songs/SongImage";
 
 const SongListItem = (props: {
-  song: Song;
+  song: ISong;
   index: number;
   setCurrentSong: any;
 }) => {

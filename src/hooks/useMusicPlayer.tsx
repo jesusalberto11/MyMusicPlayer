@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { convertFileSrc, invoke } from "@tauri-apps/api/tauri";
 import { audioDir } from "@tauri-apps/api/path";
-import { Song } from "../interfaces/Song";
+import { ISong } from "../interfaces/ISong";
 import { useMusicPlayerStore } from "../store/MusicPlayerStore";
 
 export const useMusicPlayer = () => {
@@ -42,8 +42,8 @@ export const useMusicPlayer = () => {
     const songListNames: any = await invoke("get_music_items");
     const audioDirPath = await audioDir();
     const parsedSongs: any = await JSON.parse(songListNames);
-
-    parsedSongs.forEach((song: Song) => {
+    console.log(parsedSongs);
+    parsedSongs.forEach((song: ISong) => {
       const formattedSongFileName: string = song.file_name.replace(
         /\.mp3$/,
         ""
@@ -145,7 +145,7 @@ export const useMusicPlayer = () => {
   }
 
   const filterSongList = (searchText: string) => {
-    const filteredSongList = songs.filter((item: Song) =>
+    const filteredSongList = songs.filter((item: ISong) =>
       item.title.toLowerCase().includes(searchText)
     );
 
