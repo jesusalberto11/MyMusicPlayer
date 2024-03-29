@@ -37,10 +37,25 @@ const CurrentSongDialogContent = (props: {
         {props.currentSongData ? (
           <>
             <p className="song-dialog-item-title">{t("SONG-DATA.ALBUM")}</p>
-            <p>{props.currentSongData?.album}</p>
+            <p>
+              {props.currentSongData?.album
+                ? props.currentSongData?.album
+                : t("MUSIC-PLAYER.UNKNOWN-ALBUM")}
+            </p>
             <hr />
             <p className="song-dialog-item-title">{t("SONG-DATA.YEAR")}</p>
-            <p>{props.currentSongData?.year}</p>
+            <p>
+              {props.currentSongData?.year
+                ? props.currentSongData?.year
+                : t("MUSIC-PLAYER.UNKNOWN-YEAR")}
+            </p>
+            <hr />
+            <p className="song-dialog-item-title">{t("SONG-DATA.GENRES")}</p>
+            <p>
+              {props.currentSongData?.genres.length
+                ? props.currentSongData?.genres
+                : t("MUSIC-PLAYER.UNKNOWN-GENRES")}
+            </p>
           </>
         ) : (
           <p>{t("MUSIC-PLAYER.NO-SONG-PLAYING")}</p>
