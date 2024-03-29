@@ -145,9 +145,6 @@ fn get_song_metatadata(
     let song_file_name: String = song_path.clone().as_str().to_string();
     let tag = Tag::read_from_path(song_path)?;
 
-    let duration = tag.genres();
-    println!("Lyrics frames: {:?}", duration);
-
     let genres: Vec<String> = match tag.genres() {
         Some(song_genres) => song_genres.iter().map(|&g| g.to_owned()).collect(),
         None => Vec::new(),
