@@ -18,6 +18,15 @@ struct SongData {
     album: Option<String>,
     image: Option<String>,
     file_name: String,
+    lyrics: Vec<Lyrics>,
+    genres: Vec<String>,
+}
+
+#[derive(Debug, Serialize)]
+struct Lyrics {
+    lang: String,
+    description: String,
+    text: String,
 }
 
 /// A Tauri command to retrieve music items, including metadata, from a specified directory.
@@ -136,6 +145,23 @@ fn get_song_metatadata(
     let song_file_name: String = song_path.clone().as_str().to_string();
     let tag = Tag::read_from_path(song_path)?;
 
+    let duration = tag.genres();
+    println!("Lyrics frames: {:?}", duration);
+
+    let genres: Vec<String> = match tag.genres() {
+        Some(song_genres) => song_genres.iter().map(|&g| g.to_owned()).collect(),
+        None => Vec::new(),
+    };
+
+    let lyrics: Vec<Lyrics> = tag
+        .lyrics()
+        .map(|l| Lyrics {
+            lang: l.lang.to_string(),
+            description: l.description.to_string(),
+            text: l.text.to_string(),
+        })
+        .collect();
+
     create_dir_all(&dotenv::var("SONGS_COVERS_FOLDER").unwrap())
         .expect("Error creating img directory");
 
@@ -171,6 +197,8 @@ fn get_song_metatadata(
             None
         },
         file_name: song_name.to_string(),
+        lyrics,
+        genres,
     };
 
     Ok(song_metadata)
