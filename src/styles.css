@@ -18,6 +18,8 @@
   --music-player-play-button: #22272d;
   --music-player-artist-album: #c5c5c5;
 
+  --lyrics-panel-bg-color: rgba(0, 0, 0, 0.6);
+
   --setings-item-bg-color: #2d3137;
 
   --simple-button-text-color: #b2b6ff;
@@ -38,6 +40,8 @@
   --music-player-bg-color: #e9ecef;
   --music-player-play-button: #f8f9fa;
   --music-player-artist-album: #6c757d;
+
+  --lyrics-panel-bg-color: rgba(255, 255, 255, 0.75);
 
   --setings-item-bg-color: #dee2e6;
 
