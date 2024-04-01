@@ -3,8 +3,9 @@ import CurrentSongDetails from "./CurrentSongDetails";
 import MusicPlayerControls from "./MusicPlayerControls";
 import ProgressBar from "./ProgressBar";
 import VolumeControl from "./VolumeControl";
-import { useMusicPlayer } from "../../hooks/useMusicPlayer";
 import CurrentSongDialog from "./CurrentSongDialog";
+import ExpandMusicPlayer from "./ExpandMusicPlayer";
+import { useMusicPlayer } from "../../hooks/useMusicPlayer";
 
 const MusicPlayer = () => {
   const {
@@ -26,8 +27,9 @@ const MusicPlayer = () => {
       <div className="music-player-bottom">
         <CurrentSongDetails currentSongData={currentSong} />
         <MusicPlayerControls />
-        <div className="flex centered" style={{ gap: "15px" }}>
+        <div className="music-player-bottom-btns">
           <VolumeControl />
+          <ExpandMusicPlayer />
           <CurrentSongDialog currentSongData={currentSong} />
         </div>
       </div>
