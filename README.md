@@ -69,14 +69,12 @@ Install the dependencies
   npm install
 ```
 
-Configure the .env file 
+Create a .env file in src-tauri folder
+Copy paste the below variables to the .env file and replace the %USERNAME% to your username on Windows
 
-#### First step 
-##### Create a .env file in src-tauri folder
+Note: If you're using MacOS or Linux, you need to replace the whole path to your respective music path
 
-#### Second step
-##### Copy paste the below variables to the .env file and replace the %USERNAME% to your username on Windows
-
+```bash
 ##### - Music path where we're loading the music files
 MUSIC_PATH=C:/Users/%USERNAME%/Music/Done/**/*.mp3
 
@@ -88,8 +86,7 @@ SONGS_COVERS_FOLDER=C:/Users/%USERNAME%/Music/Done/img
 
 ##### - Songs image files path
 SONGS_IMAGES_PATH=C:/Users/%USERNAME%/Music/Done/img/{}_image.jpg
-
-##### If you're using MacOS or Linux, you need to replace the whole path to your music path
+```
 
 Then you're ready to go
 
