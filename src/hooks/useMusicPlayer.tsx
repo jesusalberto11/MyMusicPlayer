@@ -42,7 +42,7 @@ export const useMusicPlayer = () => {
     const songListNames: any = await invoke("get_music_items");
     const audioDirPath = await audioDir();
     const parsedSongs: any = await JSON.parse(songListNames);
-    console.log(parsedSongs);
+
     parsedSongs.forEach((song: ISong) => {
       const formattedSongFileName: string = song.file_name.replace(
         /\.mp3$/,
