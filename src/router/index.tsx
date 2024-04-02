@@ -4,6 +4,7 @@ import ErrorPage from "../pages/ErrorPage";
 import SettingsPage from "../pages/SettingsPage";
 import MainPage from "../pages/MainPage";
 import MusicPlayerPage from "../pages/MusicPlayerPage";
+import PlaylistsPage from "../pages/PlaylistsPage";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: "music-player",
         element: <MusicPlayerPage />,
+      },
+      {
+        path: "playlists",
+        element: <PlaylistsPage />,
       },
       {
         path: "settings",
