@@ -120,6 +120,79 @@ select:hover {
   filter: var(--simple-button-hover-color);
 }
 
+/*   Open state of the dialog  */
+dialog[open] {
+  pointer-events: all;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/*   Closed state of the dialog   */
+dialog {
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.9);
+
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out,
+    overlay 0.2s ease-out allow-discrete, display 0.2s ease-out allow-discrete;
+}
+
+/*   Before-open state  */
+/* Needs to be after the previous dialog[open] rule to take effect,
+    as the specificity is the same */
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Transition the :backdrop when the dialog modal is promoted to the top layer */
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0%);
+  transition: display 0.2s allow-discrete, overlay 0.2s allow-discrete,
+    background-color 0.2s;
+}
+
+dialog[open]::backdrop {
+  background-color: rgb(0 0 0 / 25%);
+}
+
+/* This starting-style rule cannot be nested inside the above selector
+because the nesting selector cannot represent pseudo-elements. */
+
+@starting-style {
+  dialog[open]::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+  }
+}
+
+dialog::backdrop {
+  background: rgb(0, 81, 156);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 81, 156, 1) 0%,
+    rgba(0, 29, 61, 1) 100%
+  );
+  opacity: 0.75;
+}
+
+.simple-dialog {
+  height: auto;
+  width: auto;
+
+  place-self: center;
+
+  padding: 15px;
+
+  background-color: var(--simple-button-bg-color);
+
+  color: var(--app-color);
+
+  border: var(--simple-button-border);
+  border-radius: 15px;
+}
+
 .flex {
   display: flex;
 }
