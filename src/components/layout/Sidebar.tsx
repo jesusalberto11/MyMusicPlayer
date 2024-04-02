@@ -24,11 +24,6 @@ const Sidebar = () => {
         <SidebarItem to="/" title="Songs" icon={SVG_ICONS.MUSIC_NOTE} />
         <SidebarItem to="/albums" title="Albums" icon={SVG_ICONS.MUSIC_ALBUM} />
         <SidebarItem
-          to="/artists"
-          title="Artists"
-          icon={SVG_ICONS.FILE_MUSIC}
-        />
-        <SidebarItem
           to="/playlists"
           title="Playlists"
           icon={SVG_ICONS.PLAY_LIST}
