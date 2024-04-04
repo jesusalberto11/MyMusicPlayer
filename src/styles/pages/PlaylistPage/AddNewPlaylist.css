@@ -1,0 +1,120 @@
+.select-songs-for-playlist-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.select-song-container {
+  max-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  overflow-y: auto;
+}
+
+.select-song-item {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  padding: 5px;
+  margin-right: 5px;
+
+  background-color: var(--simple-button-bg-color);
+  color: var(--app-color);
+
+  border: var(--simple-button-border);
+}
+
+.add-new-playlist {
+  cursor: pointer;
+
+  height: 150px;
+  width: 150px;
+
+  padding: 15px;
+
+  background-color: var(--simple-button-bg-color);
+
+  color: var(--app-color);
+
+  border: var(--simple-button-border);
+  border-radius: 15px;
+
+  text-align: center;
+
+  transition: all 0.3s;
+
+  user-select: none;
+}
+
+.add-new-playlist-form {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.add-new-playlist-input {
+  width: 100%;
+
+  background-color: var(--simple-button-bg-color);
+  color: var(--page-text-color);
+
+  border: var(--simple-button-border);
+  border-radius: 5px;
+
+  padding: 10px 10px;
+}
+
+.add-new-playlist-input:focus {
+  outline: 2px solid #4361ee;
+}
+
+.add-new-playlist-input::placeholder {
+  color: var(--music-player-artist-album);
+}
+
+.create-playlist-btn {
+  cursor: pointer;
+
+  height: 30px;
+  width: 100%;
+
+  background-color: var(--simple-button-bg-color);
+  color: var(--page-text-color);
+
+  border: var(--simple-button-border);
+  border-radius: 5px;
+
+  padding: 10px 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.2s;
+}
+
+.create-playlist-btn:hover,
+.add-new-playlist:hover {
+  filter: var(--simple-button-hover-color);
+}
+
+.create-playlist-btn:active,
+.add-new-playlist:active {
+  transform: scale(0.9);
+}
+
+.add-new-playlist-dialog-header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
