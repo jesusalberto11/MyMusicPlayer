@@ -5,13 +5,13 @@ import MainPageHeader from "../components/pages/MainPage/MainPageHeader";
 import { useMusicPlayer } from "../hooks/useMusicPlayer";
 
 const MainPage = () => {
-  const { filteredSongs, setCurrentSong, filterSongList } = useMusicPlayer();
+  const { filteredSongs, filterSongList } = useMusicPlayer();
 
   return (
     <PageContainer title="MyMusic">
       <MainPageHeader filterSongList={filterSongList} />
       <div className="list-container">
-        <SongList songList={filteredSongs} setCurrentSong={setCurrentSong} />
+        <SongList songList={filteredSongs} />
       </div>
     </PageContainer>
   );
