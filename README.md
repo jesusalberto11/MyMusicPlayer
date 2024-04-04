@@ -21,7 +21,7 @@ This repository contains a full stack app, a Music player created Using Tauri, R
 
 <!-- Screenshots -->
 
-### :camera: Screenshots
+## :camera: Screenshots
 
 <div align="center"> 
   <img src="https://github.com/jesusalberto11/MyMusicPlayer/blob/main/src/assets/app_image_1.png" alt="App_Image_1" title="First section" />
