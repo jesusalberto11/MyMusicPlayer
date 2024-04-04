@@ -1,0 +1,62 @@
+.playlists-container {
+  width: 100%;
+  max-height: calc(100vw - 130px);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+
+  padding: 10px;
+
+  overflow-y: auto;
+}
+
+.playlists-item {
+  cursor: pointer;
+
+  height: 150px;
+  width: 150px;
+
+  background-color: var(--simple-button-bg-color);
+
+  color: var(--app-color);
+
+  border: var(--simple-button-border);
+  border-radius: 10px;
+
+  text-align: center;
+
+  transition: all 0.3s;
+  user-select: none;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.playlists-item:hover {
+  filter: var(--simple-button-hover-color);
+}
+
+.playlists-item:active {
+  transform: scale(0.9);
+}
+
+.playlist-name {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
