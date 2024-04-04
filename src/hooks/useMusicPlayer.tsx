@@ -87,10 +87,10 @@ export const useMusicPlayer = () => {
     }
   };
 
-  async function setCurrentSong(songUrl: string, songIndex: number) {
-    setCurrentSongPath(songUrl);
+  async function setCurrentSong(song: ISong, songIndex: number) {
+    setCurrentSongPath(song.file_url);
     setCurrentSongIndex(songIndex);
-    setSong(songs[songIndex]);
+    setSong(song);
     setIsSongPlaying(true);
   }
 
