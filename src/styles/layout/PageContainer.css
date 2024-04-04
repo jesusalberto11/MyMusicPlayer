@@ -13,3 +13,15 @@
   justify-content: flex-start;
   gap: 20px;
 }
+
+.back-route-header {
+  cursor: pointer;
+
+  color: var(--page-text-color);
+
+  text-decoration: none;
+}
+
+.back-route-header:hover {
+  text-decoration: underline;
+}
