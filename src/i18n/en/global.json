@@ -21,6 +21,11 @@
     "UNKNOWN-GENRES": "Unknown genres",
     "UNKNOWN-YEAR": "Unknown year"
   },
+  "PLAYLISTS": {
+    "CREATE-PLAYLIST": "Create new playlist",
+    "CREATE-BUTTON": "Create",
+    "PLAYLIST-NAME-PLACEHOLDER": "Playlist name..."
+  },
   "SETTINGS-PAGE": {
     "SETTINGS-PAGE-TITLE": "Settings",
     "CHANGE-LANG-TITLE": "Language",
