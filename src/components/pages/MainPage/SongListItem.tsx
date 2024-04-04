@@ -1,11 +1,10 @@
-import { ISong } from "../../../interfaces/ISong";
 import SongImage from "../../songs/SongImage";
+import { useMusicPlayer } from "../../../hooks/useMusicPlayer";
+import { ISong } from "../../../interfaces/ISong";
 
-const SongListItem = (props: {
-  song: ISong;
-  index: number;
-  setCurrentSong: any;
-}) => {
+const SongListItem = (props: { song: ISong; index: number }) => {
+  const { setCurrentSong } = useMusicPlayer();
+
   const checkForItem = (item: any, type: string) => {
     return item ? item : `Unknown ${type}`;
   };
@@ -13,9 +12,7 @@ const SongListItem = (props: {
   return (
     <li
       className="song-list-item"
-      onClick={() =>
-        props.setCurrentSong(props?.song.file_url, Number(props.index))
-      }
+      onClick={() => setCurrentSong(props?.song, Number(props.index))}
     >
       <SongImage imageSrc={props?.song.image} />
       <p>{checkForItem(props?.song.title, "title")}</p>
