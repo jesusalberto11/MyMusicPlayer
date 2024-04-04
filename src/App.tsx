@@ -6,10 +6,12 @@ import { useMusicPlayer } from "./hooks/useMusicPlayer";
 import { useEffect } from "react";
 import { useTheme } from "./hooks/useTheme";
 import { useLanguage } from "./hooks/useLanguage";
+import { usePlaylists } from "./hooks/usePlaylists";
 
 function App() {
   const { checkSavedTheme } = useTheme();
   const { checkSavedLanguage } = useLanguage();
+  const { checkSavedPlaylists } = usePlaylists();
 
   const {
     audioPlayerRef,
@@ -24,6 +26,7 @@ function App() {
   useEffect(() => {
     checkSavedTheme();
     checkSavedLanguage();
+    checkSavedPlaylists();
     loadSongs();
   }, []);
 
