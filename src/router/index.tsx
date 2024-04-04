@@ -5,6 +5,7 @@ import SettingsPage from "../pages/SettingsPage";
 import MainPage from "../pages/MainPage";
 import MusicPlayerPage from "../pages/MusicPlayerPage";
 import PlaylistsPage from "../pages/PlaylistsPage";
+import PlaylistPage from "../pages/PlaylistPage";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "playlists",
         element: <PlaylistsPage />,
+      },
+      {
+        path: "playlists/:id",
+        element: <PlaylistPage />,
       },
       {
         path: "settings",
