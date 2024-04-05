@@ -1,11 +1,14 @@
 import "../../styles/layout/PageContainer.css";
 import { Link } from "react-router-dom";
 import { ReactNode } from "react";
+import SimpleButton from "../shared/SimpleButton";
+import { SVG_ICONS } from "../../helpers/svgIcons";
 
 const PageContainerWithBack = (props: {
   backRoute: string;
   oldRoute?: string;
   currentRoute?: string;
+  openMenu: Function;
   children: ReactNode;
 }) => {
   return (
@@ -21,6 +24,12 @@ const PageContainerWithBack = (props: {
           </Link>
           /{props.currentRoute}
         </h1>
+        <SimpleButton
+          showTitle={false}
+          title="Open options"
+          icon={SVG_ICONS.SETTINGS}
+          onClickItem={() => props?.openMenu()}
+        />
       </div>
       {props.children}
     </div>
