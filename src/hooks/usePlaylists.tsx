@@ -42,10 +42,24 @@ export const usePlaylists = () => {
     });
   };
 
+  const deletePlaylist = async (id: string) => {
+    const foundPlaylist = await getPlaylist(id);
+
+    if (foundPlaylist) {
+      const filteredPlaylist = playlists.filter(
+        (playlist) => playlist.id !== id
+      );
+
+      setPlaylists(filteredPlaylist);
+      localforage.setItem("playlists", filteredPlaylist);
+    }
+  };
+
   return {
     playlists,
     checkSavedPlaylists,
-    createNewPlaylist,
     getPlaylist,
+    createNewPlaylist,
+    deletePlaylist,
   };
 };
