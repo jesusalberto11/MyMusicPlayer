@@ -22,7 +22,7 @@
 
   background-color: var(--simple-button-bg-color);
 
-  color: var(--app-color);
+  color: white;
 
   border: var(--simple-button-border);
   border-radius: 10px;
