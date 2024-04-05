@@ -1,4 +1,9 @@
 {
+  "ACTIONS": {
+    "CONFIRM-DIALOG-TEXT": "¿Are you sure that you want to delete this element?",
+    "CONFIRM-DIALOG-ACTION": "Yes, delete",
+    "NO-CONFIRM-DIALOG-ACTION": "No, go back"
+  },
   "MAIN-PAGE-HEADER": {
     "SEARCH-SONG": "Search a song...",
     "SORT-BY": "Sort by:",

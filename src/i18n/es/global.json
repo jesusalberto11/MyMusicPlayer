@@ -1,4 +1,9 @@
 {
+  "ACTIONS": {
+    "CONFIRM-DIALOG-TEXT": "¿Estás seguro de que quieres eliminar este elemento?",
+    "CONFIRM-DIALOG-ACTION": "Sí, eliminar",
+    "NO-CONFIRM-DIALOG-ACTION": "No, regresar"
+  },
   "MAIN-PAGE-HEADER": {
     "SEARCH-SONG": "Buscar una canción...",
     "SORT-BY": "Odenar por:",
