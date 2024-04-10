@@ -55,11 +55,26 @@ export const usePlaylists = () => {
     }
   };
 
+  const updatePlaylist = async (id: string | undefined, update: Object) => {
+    const playlistIndex = playlists.findIndex((p) => p.id === id);
+
+    if (playlistIndex === -1) return false;
+
+    playlists[playlistIndex] = {
+      ...playlists[playlistIndex],
+      ...update,
+    };
+
+    await localforage.setItem("playlists", playlists);
+    setPlaylists([...playlists]);
+  };
+
   return {
     playlists,
     checkSavedPlaylists,
     getPlaylist,
     createNewPlaylist,
     deletePlaylist,
+    updatePlaylist,
   };
 };
