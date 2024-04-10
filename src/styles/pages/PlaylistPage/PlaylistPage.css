@@ -1,0 +1,52 @@
+.edit-playlist-dialog-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.edit-playlist-dialog-header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.update-form {
+  gap: 5px;
+}
+
+.update-playlist-btn {
+  cursor: pointer;
+
+  height: 37px;
+  width: 37px;
+
+  background-color: var(--simple-button-bg-color);
+
+  color: white;
+
+  border: var(--simple-button-border);
+  border-radius: 5px;
+
+  text-align: center;
+
+  transition: all 0.3s;
+  user-select: none;
+}
+
+.update-playlist-btn:hover:not(:disabled) {
+  filter: var(--simple-button-hover-color);
+}
+
+.update-playlist-btn:active:not(:disabled) {
+  transform: scale(0.9);
+}
+
+.update-playlist-btn:disabled {
+  cursor: not-allowed;
+
+  background-color: #e63946;
+}
