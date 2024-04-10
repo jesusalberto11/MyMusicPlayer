@@ -10,6 +10,7 @@ const SongLyrics = (props: { lyrics: ILyrics[] | null }) => {
   return (
     <>
       {props?.lyrics?.length !== 0 &&
+        props?.lyrics?.length !== undefined &&
         (isLyricsPanelOpen ? (
           <div className="song-lyrics">
             <SimpleButton
