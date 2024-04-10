@@ -131,7 +131,7 @@ dialog[open] {
 dialog {
   pointer-events: none;
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.95);
 
   transition: opacity 0.2s ease-out, transform 0.2s ease-out,
     overlay 0.2s ease-out allow-discrete, display 0.2s ease-out allow-discrete;
@@ -143,7 +143,7 @@ dialog {
 @starting-style {
   dialog[open] {
     opacity: 0;
-    transform: scale(1);
+    transform: scale(1.05);
   }
 }
 
